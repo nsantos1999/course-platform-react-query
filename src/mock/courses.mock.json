@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "name": "Typescript",
+    "duration": 100
+  },
+  {
+    "id": 2,
+    "name": "Javascript",
+    "duration": 200
+  },
+  {
+    "id": 3,
+    "name": "React",
+    "duration": 300
+  },
+  {
+    "id": 4,
+    "name": "React Native",
+    "duration": 500
+  },
+  {
+    "id": 5,
+    "name": "MongoDB",
+    "duration": 400
+  }
+]
