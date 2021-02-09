@@ -1,14 +1,29 @@
 import ReactQueryKeys from 'constants/ReactQueryKeys';
 import Course from 'interfaces/Course';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import CourseService from 'services/CourseService';
 import CourseLine from './Line';
 
 function CourseList() {
+  const queryClient = useQueryClient();
+
   const { data: courses, isFetching, error } = useQuery<Course[]>(
     ReactQueryKeys.COURSES,
     CourseService.getAll,
+  );
+
+  const mutation = useMutation(CourseService.save);
+
+  const handleSaveNewCourse = useCallback(
+    (course: Course) => {
+      mutation.mutate(course, {
+        onSuccess: () => {
+          queryClient.refetchQueries(ReactQueryKeys.COURSES);
+        },
+      });
+    },
+    [mutation],
   );
 
   if (isFetching) {
@@ -22,13 +37,21 @@ function CourseList() {
   return (
     <>
       <h1>Courses</h1>
+      <button
+        type="button"
+        onClick={() => {
+          handleSaveNewCourse({ id: 10, name: 'New Course', duration: 150 });
+        }}
+      >
+        Add New Course
+      </button>
       <table style={{ width: '100%' }}>
         <thead>
           <tr>
             <th>#</th>
             <th>Name</th>
             <th>Duration</th>
-            <th>Actions</th>
+            {/* <th>Actions</th> */}
           </tr>
         </thead>
         <tbody>

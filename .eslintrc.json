@@ -22,6 +22,7 @@
   },
   "plugins": ["react", "@typescript-eslint", "react-hooks", "prettier"],
   "rules": {
+    // "object-curly-newline": ["error", { "multiline": true, "minProperties": 4 }],
     "arrow-parens": [0, "ban-single-arg-parens"],
     "react/jsx-one-expression-per-line": "off",
     "no-use-before-define": "off",

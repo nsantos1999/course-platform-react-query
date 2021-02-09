@@ -3,13 +3,14 @@ import React from 'react';
 import './App.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import CourseList from 'views/Course/CourseList';
+import Routes from 'Routes';
 
 const queryClient = new QueryClient();
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <CourseList />
+      <Routes />
     </QueryClientProvider>
   );
 }
